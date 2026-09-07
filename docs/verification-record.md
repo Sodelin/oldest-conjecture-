@@ -4,6 +4,8 @@
 
 The integrated Lean 4.33.1 build now includes `KernelIsolation`, `KernelEndpoints734`, `Plateau302`, and `Extension734`. It compiled successfully; the exact output is in [kernel-build-validation.log](kernel-build-validation.log).
 
+Published proof commit: [`ced445d951ea043fda41b03044192838a838b0f3`](https://github.com/Sodelin/oldest-conjecture-/tree/ced445d951ea043fda41b03044192838a838b0f3). [GitHub Actions run 34129895492](https://github.com/Sodelin/oldest-conjecture-/actions/runs/34129895492), job `proof` (101767229128), completed successfully. The logs confirm `leanchecker` success, all exact witness checks, and a strict audit of 61 declarations with the allowlist `[propext, Classical.choice, Quot.sound]`.
+
 All five closed finite certificates are axiom-free and evaluated with `decide +kernel`. The complete plateau, adjacent maximum transfers, and conditional numerical consequence through 734 have only `propext`, `Classical.choice`, and `Quot.sound`. No native checker or SAT assumption remains in the theorem closure. CI has been updated to run `leanchecker Extension734` and a strict axiom audit rooted at `Extension734`.
 
 The 607- and 608-element witnesses independently pass exact integer enumeration; both bounds have precisely 738 forbidden triples and no triple touches 733 or 734. A separate AI semantic audit checked that the full cardinality counts through 734 once, arbitrary-set support is correct, and the maximum transfers prove upper and lower bounds. No human expert endorsement or universal priority claim is implied.

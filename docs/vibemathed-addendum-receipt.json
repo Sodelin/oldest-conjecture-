@@ -1,0 +1,17 @@
+{
+  "status": "sent; curator review pending",
+  "sent_at_displayed": "07 Sep 2026, 13:55 UTC",
+  "recipient": "Rasmus Lindahl",
+  "recipient_role": "Verified site administrator",
+  "recipient_profile": "https://vibemathed.com/user/Rasmus%20Lindahl",
+  "subject": "Addendum: finite plateau at 732 — kernel proof and terms through 734",
+  "source_commit": "ced445d951ea043fda41b03044192838a838b0f3",
+  "source_url": "https://github.com/Sodelin/oldest-conjecture-/tree/ced445d951ea043fda41b03044192838a838b0f3",
+  "passing_ci": "https://github.com/Sodelin/oldest-conjecture-/actions/runs/34129895492",
+  "requested_update": "Attach the 733/734 exact maximum transfers and current kernel-only finite certificates to the existing pending732submission; update the old native-checker disclosure.",
+  "verified_receipt": "Sent conversation read back in the authenticated inbox, showing the recipient, subject, timestamp, and complete message under the sender You.",
+  "numerical_baseline": "731606 remains external published OEIS data, an explicit premise of the numerical consequences.",
+  "acceptance_confirmed": false,
+  "priority_confirmed": false,
+  "oeis_sequence_update_submitted": false
+}
