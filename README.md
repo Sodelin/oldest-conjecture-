@@ -10,6 +10,8 @@ Here \(f(n)\) is the largest size of a subset of \(\{1,\ldots,n\}\) containing n
 
 This is a small finite result connected to Erdős problem #302. It does **not** solve the historical asymptotic problem. Its novelty is **provisional**: our searches found no earlier explicit 732 result, but neither absence from a table nor a search establishes first discovery.
 
+**Publication status:** [public verification passed](https://github.com/Sodelin/oldest-conjecture-/actions/runs/34127973633). The result was submitted to [VibeMathed's review queue](https://vibemathed.com/queue) and [Erdős Frontier Atlas issue #138](https://github.com/techno-optimist/erdos-frontier-atlas/issues/138) on 7 September 2026. Both await review; neither is claimed as acceptance or priority confirmation.
+
 The [published OEIS A390395 table](https://oeis.org/A390395/b390395.txt), checked on 7 September 2026, ends at \(f(731)=606\). Combining that external baseline with the Lean theorem gives the candidate extension **\(f(732)=606\)**. The upper bound at 731 has not been formalized here. An explicit 606-element witness is independently checked with exact integer arithmetic.
 
 ## Reproduce

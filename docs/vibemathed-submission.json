@@ -1,0 +1,44 @@
+{
+  "fields": {
+    "Anything else worth knowing": "Please assess whether this small finite extension meets your meaningful-partial-result threshold and whether it is already known. No first-ever claim is made. The OEIS b-file currently ends at 731; the explicit 732 gap is at https://github.com/techno-optimist/erdos-frontier-atlas/blob/main/views/graph/P302.md . The 690-entry VibeMathed snapshot and targeted literature/GitHub/indexed X searches found no earlier explicit 732 result, but direct live Twitter and the current Erdős Problems forum were inaccessible. The elementary component argument may be known. The b-file's displayed code appears to have a transcription typo; its numerical upper baseline is not represented as a reproduced certificate. Full scope, prior-work record, AI disclosure and trust assumptions are in the repository.",
+    "Collaborators": "Sodelin (project owner and research direction)",
+    "Field detail": "Extremal sets avoiding distinct reciprocal triples",
+    "Model*": "OpenAI ChatGPT/Codex (exact model identifier unavailable)",
+    "Name*": "Reciprocal-triple-free sets: the finite plateau at 732",
+    "Posed by": "Finite frontier: Erdős Frontier Atlas P302, recorded July 2026. Parent problem: Erdős and Graham (1980); the parent asymptotic problem is not solved.",
+    "Short name*": "A390395: plateau at 732",
+    "Solve date*": "2026-09-07",
+    "Source URL*": "https://github.com/Sodelin/oldest-conjecture-/tree/0d2885f58c5fe6eee8703cdee83a843a1594a7ea",
+    "Source name*": "GitHub repository with Lean proof and exact verifier",
+    "Statement": "Let f(n) be the maximum size of a subset of {1,...,n} containing no three distinct a,b,c satisfying 1/a = 1/b + 1/c. A published finite frontier for Erdős problem 302 asks whether f(732) is 606 or 607, using the existing OEIS value f(731)=606.",
+    "Vendor": "OpenAI",
+    "Verification note": "Lean 4.33.1 compiles the complete plateau theorem f(732)=f(731), including support, duplicate-free cardinality, and the exact rational-equation bridge. The isolated-gadget lemma uses bv_decide with its native LRAT checker axiom, in addition to propext, Classical.choice and Quot.sound; this is not kernel-only verification. An independent exact Python check validates a 606-element witness and all 738 forbidden triples. The numerical upper baseline f(731)=606 remains external published OEIS data, not a formal theorem here. This is a partial finite result in a public repository, not peer-reviewed. Novelty remains provisional, and an independent human statement/priority audit is requested.",
+    "What the AI did": "The assistant selected the finite target, computed a witness, identified an isolated five-vertex component, developed a replacement proof, wrote and compiled the Lean formalization, and checked prior work. Separate assistant instances reviewed the arithmetic and formal statement. The human project owner initiated and directed the research. No independent human expert review has yet occurred.",
+    "What was actually shown": "Proved f(732)=f(731) unconditionally as a structural finite theorem. The isolated component G={122,183,244,366,732} has exactly the edges {122,183,366}, {183,244,732}, {244,366,732}. Every admissible selection in G has size at most 3; replacement by {122,183,244} preserves admissibility and cardinality or increases it while removing 732. Combining this with the published f(731)=606 gives the candidate new table term f(732)=606. The historical asymptotic problem remains open. A general large-prime recurrence is proved separately in prose, not in Lean; it may be folklore.",
+    "Year posed": "2026"
+  },
+  "selects": {
+    "AI contribution": "AI-discovered",
+    "Field*": "Number theory",
+    "Method": "Argument (conceptual proof)",
+    "Publication": "Announcement",
+    "Result*": "Proved",
+    "Status*": "Partial result",
+    "Verification*": "Lean-checked, statement unaudited"
+  },
+  "links": [
+    {
+      "kind": "Lean proof",
+      "label": "Passing Lean build, leanchecker, and exact witness check",
+      "url": "https://github.com/Sodelin/oldest-conjecture-/actions/runs/34127973633"
+    }
+  ],
+  "receipt": {
+    "date": "2026-09-07",
+    "status": "submitted; pending review",
+    "title": "Reciprocal-triple-free sets: the finite plateau at 732",
+    "public_queue": "https://vibemathed.com/queue",
+    "confirmation": "Thanks - your entry is in the queue.",
+    "publication": false
+  }
+}
