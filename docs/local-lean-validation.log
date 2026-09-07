@@ -1,0 +1,16 @@
+'Erdos302Finite.plateau_732' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ isolated_gadget._native.bv_decide.ax_1_5]
+'Erdos302Finite.domain_membership' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos302Finite.domain_nodup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos302Finite.exact_maximum_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ isolated_gadget._native.bv_decide.ax_1_5]
+'Erdos302Finite.unit_fraction_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos302Finite.admissible_iff_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Erdos302Finite.rat_plateau_732' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ isolated_gadget._native.bv_decide.ax_1_5]

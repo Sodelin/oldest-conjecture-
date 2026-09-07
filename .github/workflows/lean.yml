@@ -1,0 +1,30 @@
+name: Verify finite plateau
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596
+        with:
+          auto-config: "false"
+          build: "true"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "false"
+          use-github-cache: "false"
+          leanchecker: "true"
+          leanchecker-args: Plateau302
+          axiom-audit: "false"
+      - name: Print proof dependencies (includes disclosed native checker)
+        run: lake env lean Plateau302.lean
+      - name: Check explicit witness and gadget independently
+        run: python3 verify302.py
