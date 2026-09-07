@@ -33,14 +33,14 @@ The new set stays admissible, has at least as many elements, and avoids732.
   isolation; run with `python verify302.py`.
 - Discovery used an exploratory HiGHS MILP. Its numerical upper bound is not used as the formal proof; the included files reproduce the mathematical verification independently.
 
-Compiled successfully with Lean4.33.1. `plateau_732` and
-`exact_maximum_transfer` depend on `propext`, `Classical.choice`, `Quot.sound`,
-and the generated native `bv_decide` checker axiom
-`Erdos302Finite.isolated_gadget._native.bv_decide.ax_1_5`.
-The latter is Lean's default native-evaluated LRAT certificate checker. Do not
-label the artifact kernel-only or axiom-free. There are no `sorry` declarations,
-user axioms, or hidden numerical assumptions. Domain/cardinality checks use only
-the ordinary Lean logical axioms; the finite local bound uses explicit Bool cases.
+Compiled successfully with Lean 4.33.1. The current `plateau_732` and
+`exact_maximum_transfer` depend only on `propext`, `Classical.choice`, and
+`Quot.sound`. `KernelIsolation.lean` reconstructs the third denominator as
+`a*b/(b-a)` and checks three finite tables with `decide +kernel`.
+Those closed table certificates have no axioms. There are no `sorry` declarations,
+user axioms, native-checker axioms, or hidden numerical assumptions in the current
+proof. The initially published native `bv_decide` version remains in Git history;
+this revision replaces its proof mechanism without changing the theorem.
 
 ## Sources and priority limits
 

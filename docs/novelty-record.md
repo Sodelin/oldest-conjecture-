@@ -25,8 +25,14 @@ The 1980 date concerns the parent extremal problem. This finite 732 target must 
 
 The general component argument is elementary and may be known or folklore. Appropriate wording is **candidate table extension with a verified structural proof, pending priority review**. GitHub's publication record establishes that these files were public by that timestamp; it does not establish the absence of earlier work.
 
+## Adjacent extension check
+
+The same day's independent source review considered the proposed additional terms 733 607 and 734 608. The current entry and b-file still ended at 731. The [public sequence history](https://oeis.org/history?seq=A390395) showed revision 50, dated 30 November 2025, installing the table through 731; that history response was cached on 1 September 2026, whereas the entry and b-file were crawled on the research date. No later draft appeared in the inspected history. An earlier history discussion mentions 732 hypothetically, without a value or proof.
+
+Targeted searches for A390395 with 733/734/607/608 and indexed X posts found no relevant earlier extension. This establishes only a gap in the inspected public record. The isolated-vertex consequences are elementary and may have been noticed elsewhere. Safe wording is: **three additional terms beyond the inspected published table, derived from proved relations and its published starting value**.
+
 ## Process and inference checks
 
 11. Process integrity: separated searches, actual compilation, exact witness verification, an AI semantic audit, and source/status comparison. Gaps: no human expert review, no exhaustive Twitter/forum access, and no formal 731 upper bound.
 
-12. Inference robustness: discovering earlier work would defeat a priority claim, not the theorem. Changing the external 731 baseline would change the numerical extension, not the plateau. Native checker correctness is a disclosed formal trust dependency. The general prose theorem and known asymptotic results are not silently imported as axioms into the finite Lean proof.
+12. Inference robustness: discovering earlier work would defeat a priority claim, not the theorem. Changing the external 731 baseline would change the numerical extension, not the plateau. The initial native-checker dependency was removed by a subsequent kernel-checked proof revision, with only ordinary logical axioms remaining. The general prose theorem and known asymptotic results are not silently imported as axioms into the finite Lean proof.

@@ -1,5 +1,17 @@
 # Verification record
 
+## Current kernel-checked revision
+
+The integrated Lean 4.33.1 build now includes `KernelIsolation`, `KernelEndpoints734`, `Plateau302`, and `Extension734`. It compiled successfully; the exact output is in [kernel-build-validation.log](kernel-build-validation.log).
+
+All five closed finite certificates are axiom-free and evaluated with `decide +kernel`. The complete plateau, adjacent maximum transfers, and conditional numerical consequence through 734 have only `propext`, `Classical.choice`, and `Quot.sound`. No native checker or SAT assumption remains in the theorem closure. CI has been updated to run `leanchecker Extension734` and a strict axiom audit rooted at `Extension734`.
+
+The 607- and 608-element witnesses independently pass exact integer enumeration; both bounds have precisely 738 forbidden triples and no triple touches 733 or 734. A separate AI semantic audit checked that the full cardinality counts through 734 once, arbitrary-set support is correct, and the maximum transfers prove upper and lower bounds. No human expert endorsement or universal priority claim is implied.
+
+The external numerical upper bound at 731 remains explicit. Kernel checking removes a formal trust dependency; it does not resolve that external baseline or prove originality.
+
+## Original published revision
+
 Proof source commit: `0d2885f58c5fe6eee8703cdee83a843a1594a7ea`.
 
 Toolchain: Lean 4.33.1, pinned in `lean-toolchain`; no mathlib dependency.
@@ -21,4 +33,4 @@ The final item is Lean's native-evaluated certificate-checker axiom. The workflo
 
 Separate assistant instances checked the argument and statement independently of the authoring instance. This is an AI review, not human expert endorsement. The proof makes no numerical assumption in the plateau theorem; `exact_maximum_transfer` exposes the 731 baseline as its hypothesis. The general large-prime theorem in prose is outside the scope of the Lean build.
 
-The mathematical artifact is reproducible. Its novelty and historical priority remain unverified.
+The historical native-checker statements above describe the original commit only. The current revision replaces those checks as described at the top of this record. The mathematical artifact is reproducible; novelty and historical priority remain unverified.

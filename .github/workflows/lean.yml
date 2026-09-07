@@ -22,9 +22,14 @@ jobs:
           use-mathlib-cache: "false"
           use-github-cache: "false"
           leanchecker: "true"
-          leanchecker-args: Plateau302
-          axiom-audit: "false"
-      - name: Print proof dependencies (includes disclosed native checker)
-        run: lake env lean Plateau302.lean
+          leanchecker-args: Extension734
+          axiom-audit: "true"
+          axiom-audit-root: Extension734
+      - name: Print proof dependencies
+        run: |
+          lake env lean Plateau302.lean
+          lake env lean Extension734.lean
       - name: Check explicit witness and gadget independently
-        run: python3 verify302.py
+        run: |
+          python3 verify302.py
+          python3 verify734.py

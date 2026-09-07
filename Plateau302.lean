@@ -1,4 +1,4 @@
-import Std.Tactic.BVDecide
+import KernelIsolation
 import Init.Data.Rat
 
 /-!
@@ -13,9 +13,9 @@ The OEIS A390395 b-file, accessed 2026-09-07, ends with 731 606. Combining that
 external baseline with this transition gives 732 606. The baseline is not
 formalized in this file. This does not solve the asymptotic Erdős conjecture.
 
-`isolated_gadget` uses Lean 4.33.1 `bv_decide`, whose LRAT reflection checker uses
-native evaluation and consequently introduces a generated native-checker axiom.
-The exact trust dependencies are printed below. No `sorry` or user axiom is used.
+The finite isolation proof now uses exact quotient tables evaluated by the Lean
+kernel. The earlier native bv_decide version remains in the publication history.
+The current theorem has only ordinary Lean logical axioms; dependencies are printed below.
 -/
 
 namespace Erdos302Finite
@@ -35,24 +35,6 @@ theorem unit_fraction_equivalence (a b c : Nat) (ha : 0 < a) (hb : 0 < b) (hc : 
   simp only [← Int.natCast_add, ← Int.natCast_mul, Int.ofNat_inj]
   simp [Nat.add_comm, Nat.mul_comm, eq_comm]
 
--- Arithmetic isolation of the vertices 122, 183, 244, 366, 732.
-def inG (x : BitVec 10) : Bool :=
- x == 122 || x == 183 || x == 244 || x == 366 || x == 732
-
-def reciprocalTriple (a b c : BitVec 10) : Bool :=
- a.zeroExtend 20 * (b.zeroExtend 20 + c.zeroExtend 20) == b.zeroExtend 20 * c.zeroExtend 20
-
-theorem isolated_gadget (a b c : BitVec 10)
- (ha : 0 < a) (hab : a < b) (hbc : b < c) (hc : c ≤ 732)
- (hrel : reciprocalTriple a b c)
- (hG : inG a || inG b || inG c) :
- (a = 122 ∧ b = 183 ∧ c = 366) ∨
- (a = 183 ∧ b = 244 ∧ c = 732) ∨
- (a = 244 ∧ b = 366 ∧ c = 732) := by
- unfold reciprocalTriple inG at *
- bv_decide (config := { timeout := 120 })
-
-
 def inGNat (x : Nat) : Bool :=
  x == 122 || x == 183 || x == 244 || x == 366 || x == 732
 
@@ -63,41 +45,7 @@ theorem isolated_nat (a b c : Nat)
  (a = 122 ∧ b = 183 ∧ c = 366) ∨
  (a = 183 ∧ b = 244 ∧ c = 732) ∨
  (a = 244 ∧ b = 366 ∧ c = 732) := by
- have ha10 : a % 1024 = a := Nat.mod_eq_of_lt (by omega)
- have hb10 : b % 1024 = b := Nat.mod_eq_of_lt (by omega)
- have hc10 : c % 1024 = c := Nat.mod_eq_of_lt (by omega)
- have ha20 : a % 1048576 = a := Nat.mod_eq_of_lt (by omega)
- have hb20 : b % 1048576 = b := Nat.mod_eq_of_lt (by omega)
- have hc20 : c % 1048576 = c := Nat.mod_eq_of_lt (by omega)
- have za : (BitVec.ofNat 10 a).zeroExtend 20 = BitVec.ofNat 20 a := by
-  apply BitVec.eq_of_toNat_eq
-  simp [BitVec.toNat_setWidth, BitVec.toNat_ofNat, ha10]
- have zb : (BitVec.ofNat 10 b).zeroExtend 20 = BitVec.ofNat 20 b := by
-  apply BitVec.eq_of_toNat_eq
-  simp [BitVec.toNat_setWidth, BitVec.toNat_ofNat, hb10]
- have zc : (BitVec.ofNat 10 c).zeroExtend 20 = BitVec.ofNat 20 c := by
-  apply BitVec.eq_of_toNat_eq
-  simp [BitVec.toNat_setWidth, BitVec.toNat_ofNat, hc10]
- have hr : reciprocalTriple (BitVec.ofNat 10 a) (BitVec.ofNat 10 b) (BitVec.ofNat 10 c) := by
-  unfold reciprocalTriple
-  rw [za, zb, zc, ← BitVec.ofNat_add, ← BitVec.ofNat_mul, ← BitVec.ofNat_mul, hrel]
-  simp
- have hg : inG (BitVec.ofNat 10 a) || inG (BitVec.ofNat 10 b) || inG (BitVec.ofNat 10 c) := by
-  simpa [inG, inGNat, BitVec.toNat_eq, BitVec.toNat_ofNat, ha10, hb10, hc10] using hG
- have hh := isolated_gadget (BitVec.ofNat 10 a) (BitVec.ofNat 10 b) (BitVec.ofNat 10 c)
-  (by simpa [BitVec.lt_def, BitVec.toNat_ofNat, ha10] using ha)
-  (by simpa [BitVec.lt_def, BitVec.toNat_ofNat, ha10, hb10] using hab)
-  (by simpa [BitVec.lt_def, BitVec.toNat_ofNat, hb10, hc10] using hbc)
-  (by simpa [BitVec.le_def, BitVec.toNat_ofNat, hc10] using hc) hr hg
- rcases hh with ⟨h1,h2,h3⟩ | ⟨h1,h2,h3⟩ | ⟨h1,h2,h3⟩
- all_goals
-  have p1 := congrArg BitVec.toNat h1
-  have p2 := congrArg BitVec.toNat h2
-  have p3 := congrArg BitVec.toNat h3
-  simp [BitVec.toNat_ofNat, ha10, hb10, hc10] at p1 p2 p3
-  omega
-
-
+ exact Erdos302Kernel.isolated_nat a b c ha hab hbc hc hrel hG
 
 def gadget : List Nat := [122, 183, 244, 366, 732]
 def outside : List Nat := (List.range 733).filter (fun x => 0 < x && !inGNat x)
